@@ -9,14 +9,14 @@ http.createServer(function (req, res) {
       console.log("Inbound 'Bad-Request' request being processed");
       res.writeHead(400);
     } else if(req.url === "/Created"){
-      console.log("Inbound 'Created' request being processed");
-      res.writeHead(201);
+      if(req.method === "POST") res.writeHead(201);
+      else res.writeHead(405);
     } else if(req.url === "/Forbidden"){
       console.log("Inbound 'Forbidden' request being processed");
       res.writeHead(403);
     } else if(req.url === "/Found"){
       console.log("Inbound 'Found' request being processed");
-      res.writeHead(302);
+      res.writeHead(302, { 'Location':'http://appacademy.io'});
     } else if(req.url === "/Gateway-Timeout"){
       console.log("Inbound 'Gateway-Timeout' request being processed");
       res.writeHead(504);
